@@ -12,40 +12,74 @@ class MainActivity : AppCompatActivity() {
     private lateinit var numberTextView: TextView
     private lateinit var button: Button
 
-    private var currentNumber = 0
+    private val defaultNumber = 0
+
+    companion object {
+        const val CURRENT_NUMBER = "CURRENT_NUMBER"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(this::class.java.canonicalName, "onCreate")
-
         setContentView(R.layout.main_layout)
 
         numberTextView = findViewById(R.id.numberText)
         button = findViewById(R.id.button)
 
-        updateNumberText()
+        val number = savedInstanceState?.getInt(CURRENT_NUMBER) ?: defaultNumber
+
+        updateTextViewNumber(number)
 
         button.setOnClickListener {
             val intent = Intent(
                 this,
                 SecondActivity::class.java
             ).apply {
-                putExtra(SecondActivity.NUM, currentNumber)
+                putExtra(SecondActivity.NUM, getTextViewNumber())
             }
 
             startActivity(intent)
         }
+
+        Log.d(this::class.java.canonicalName, "onCreate")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(CURRENT_NUMBER, getTextViewNumber())
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(this::class.java.canonicalName, "onResume")
+        updateTextViewNumber(getTextViewNumber() + 1)
 
-        currentNumber++
-        updateNumberText()
+        Log.d(this::class.java.canonicalName, "onResume")
     }
 
-    private fun updateNumberText() {
-        numberTextView.text = currentNumber.toString()
+    override fun onStart() {
+        super.onStart()
+        Log.d(this::class.java.canonicalName, "onStart")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(this::class.java.canonicalName, "onStop")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(this::class.java.canonicalName, "onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(this::class.java.canonicalName, "onDestroy")
+    }
+
+    private fun updateTextViewNumber(number: Int) {
+        numberTextView.text = number.toString()
+    }
+
+    private fun getTextViewNumber(): Int {
+        return numberTextView.text.toString().toInt()
     }
 }

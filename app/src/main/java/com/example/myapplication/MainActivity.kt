@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val number = savedInstanceState?.getInt(CURRENT_NUMBER) ?: defaultNumber
 
-        updateTextViewNumber(number - 1)
+        updateTextViewNumber(number)
 
         button.setOnClickListener {
             val intent = Intent(

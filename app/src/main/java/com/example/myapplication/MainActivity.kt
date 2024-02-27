@@ -66,6 +66,11 @@ class MainActivity : AppCompatActivity() {
         Log.d(this::class.java.canonicalName, "onPause")
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(this::class.java.canonicalName, "onRestart")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         Log.d(this::class.java.canonicalName, "onDestroy")

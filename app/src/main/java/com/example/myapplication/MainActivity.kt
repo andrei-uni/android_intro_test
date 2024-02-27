@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val number = savedInstanceState?.getInt(CURRENT_NUMBER) ?: -1
 
-        updateTextViewNumber(number)
+        updateTextViewNumber(number + 1)
 
         button.setOnClickListener {
             val intent = Intent(
@@ -48,8 +48,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateTextViewNumber(getTextViewNumber() + 1)
-
         Log.d(this::class.java.canonicalName, "onResume")
     }
 

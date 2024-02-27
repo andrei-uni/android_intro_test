@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var numberTextView: TextView
     private lateinit var button: Button
 
-    private val defaultNumber = 0
-
     companion object {
         const val CURRENT_NUMBER = "CURRENT_NUMBER"
     }
@@ -25,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         numberTextView = findViewById(R.id.numberText)
         button = findViewById(R.id.button)
 
-        val number = savedInstanceState?.getInt(CURRENT_NUMBER) ?: defaultNumber
+        val number = savedInstanceState?.getInt(CURRENT_NUMBER) ?: -1
 
         updateTextViewNumber(number)
 

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivityWithLifecycleLogging() {
 
     companion object {
         const val NUM = "Num"
@@ -21,37 +21,5 @@ class SecondActivity : AppCompatActivity() {
 
         squaredNumberText = findViewById(R.id.squaredNumberText)
         squaredNumberText.text = "${number * number}"
-
-        Log.d(this::class.java.canonicalName, "onCreate")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(this::class.java.canonicalName, "onStart")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(this::class.java.canonicalName, "onStop")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(this::class.java.canonicalName, "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(this::class.java.canonicalName, "onPause")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(this::class.java.canonicalName, "onRestart")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(this::class.java.canonicalName, "onDestroy")
     }
 }

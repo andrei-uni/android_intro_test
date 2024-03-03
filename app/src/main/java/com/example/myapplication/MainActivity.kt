@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivityWithLifecycleLogging() {
 
     private lateinit var numberTextView: TextView
     private lateinit var button: Button
@@ -37,43 +37,11 @@ class MainActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
-
-        Log.d(this::class.java.canonicalName, "onCreate")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(CURRENT_NUMBER, getTextViewNumber())
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(this::class.java.canonicalName, "onResume")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(this::class.java.canonicalName, "onStart")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(this::class.java.canonicalName, "onStop")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(this::class.java.canonicalName, "onPause")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(this::class.java.canonicalName, "onRestart")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(this::class.java.canonicalName, "onDestroy")
     }
 
     private fun updateTextViewNumber(number: Int) {

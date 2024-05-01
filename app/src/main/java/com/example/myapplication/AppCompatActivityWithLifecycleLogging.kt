@@ -5,38 +5,53 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class AppCompatActivityWithLifecycleLogging : AppCompatActivity() {
+
+    private fun log(message: String) {
+        Log.d(this::class.java.canonicalName, message)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(this::class.java.canonicalName, "onCreate")
+        log("onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d(this::class.java.canonicalName, "onStart")
+        log("onStart")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(this::class.java.canonicalName, "onStop")
+        log("onStop")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(this::class.java.canonicalName, "onResume")
+        log("onResume")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(this::class.java.canonicalName, "onPause")
+        log("onPause")
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.d(this::class.java.canonicalName, "onRestart")
+        log("onRestart")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(this::class.java.canonicalName, "onDestroy")
+        log("onDestroy")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        log("onSaveInstanceState")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        log("onRestoreInstanceState")
     }
 }
